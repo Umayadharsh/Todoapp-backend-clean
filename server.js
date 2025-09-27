@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,10 +7,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 4000;
+const mongoURI = process.env.MONGO_URI;
+
+
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/todo-app')
-  .then(() => console.log("✅ DB connected"))
-  .catch((err) => console.log("❌ DB connection failed", err));
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ DB connected"))
+.catch((err) => console.log("❌ DB connection failed", err));
 
 // Schema & Model
 const todoSchema = new mongoose.Schema({
