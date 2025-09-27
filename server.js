@@ -8,16 +8,18 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 4000;
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = process.env.MONGO_URI; // make sure this is set in Render env vars
+console.log("Connecting to MongoDB:", mongoURI);
 
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log("✅ DB connected"))
 .catch((err) => console.log("❌ DB connection failed", err));
+
 
 // Schema & Model
 const todoSchema = new mongoose.Schema({
