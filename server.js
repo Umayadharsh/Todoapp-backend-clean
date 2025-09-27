@@ -12,9 +12,9 @@ const mongoURI = process.env.MONGO_URI;
 
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 })
 .then(() => console.log("✅ DB connected"))
 .catch((err) => console.log("❌ DB connection failed", err));
