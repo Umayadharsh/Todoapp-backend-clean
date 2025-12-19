@@ -106,5 +106,10 @@ app.get('/ping', (req, res) => {
 });
 
 // Start server
-const port = 4000;
-app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
+
+app.get("/", (req, res) => {
+  res.send("Todo backend is running 🚀");
+});
